@@ -12,6 +12,6 @@ Open the "wpa_supplicant.conf" and change "code", "name" and "password" to your 
 ssh to your raspberry and type:
 
 ```shell
-curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/simply_instace.sh -o simply_instace.sh
-sudo sh simply_instace.sh
+curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/simply_instace.sh -o simply-instance.sh
+sudo sh simply-instance.sh
 ```
