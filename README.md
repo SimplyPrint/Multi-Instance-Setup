@@ -3,8 +3,6 @@
 
 ## Usage:
 
-`Install`:
-
 Flash raspberry with raspberry Pi OS lite (32-bit).
 
 Download the 2 files called "ssh" and "wpa_supplicant.conf" and add them to the boot drive.
