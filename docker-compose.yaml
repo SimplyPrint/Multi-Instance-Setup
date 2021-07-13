@@ -14,7 +14,7 @@ services:
     #  - /dev/video6:/dev/video6
     #  - /dev/ttyACM0:/dev/ttyACM0
     #  - /dev/ttyAMA0:/dev/ttyAMA0
-      - /dev/ttyUSB0:/dev/ttyUSB0
+    #  - /dev/ttyUSB0:/dev/ttyUSB0
     #  - /dev/ttyUSB1:/dev/ttyUSB1
     #  - /dev/ttyUSB2:/dev/ttyUSB2
     #  - /dev/ttyUSB2:/dev/ttyUSB3
@@ -39,7 +39,7 @@ services:
     #  - /dev/ttyACM0:/dev/ttyACM0
     #  - /dev/ttyAMA0:/dev/ttyAMA0
     #  - /dev/ttyUSB0:/dev/ttyUSB0
-      - /dev/ttyUSB1:/dev/ttyUSB1
+    #  - /dev/ttyUSB1:/dev/ttyUSB1
     #  - /dev/ttyUSB2:/dev/ttyUSB2
     #  - /dev/ttyUSB2:/dev/ttyUSB3
 
@@ -64,7 +64,7 @@ services:
     #  - /dev/ttyAMA0:/dev/ttyAMA0
     #  - /dev/ttyUSB0:/dev/ttyUSB0
     #  - /dev/ttyUSB1:/dev/ttyUSB1
-      - /dev/ttyUSB2:/dev/ttyUSB2
+    #  - /dev/ttyUSB2:/dev/ttyUSB2
     #  - /dev/ttyUSB2:/dev/ttyUSB3
 
     volumes:
@@ -89,7 +89,7 @@ services:
     #  - /dev/ttyUSB0:/dev/ttyUSB0
     #  - /dev/ttyUSB1:/dev/ttyUSB1
     #  - /dev/ttyUSB2:/dev/ttyUSB2
-      - /dev/ttyUSB2:/dev/ttyUSB3
+    #  - /dev/ttyUSB2:/dev/ttyUSB3
 
     volumes:
      - ./sp3:/octoprint
