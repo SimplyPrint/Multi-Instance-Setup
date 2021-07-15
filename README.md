@@ -12,6 +12,8 @@ Open the "wpa_supplicant.conf" and change "code", "name" and "password" to your 
 ssh to your raspberry and type:
 
 ```shell
-curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/simply_instace.sh -o simply-instance.sh
-sudo sh simply-instance.sh
+curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/b1cf1385da6e26231a11be2238c6a004fb1046ee/docker_setup.sh -o docker_setup.sh
+sudo bash docker_setup.sh
 ```
+
+Then follow the setup steps as described in the terminal
