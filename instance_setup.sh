@@ -112,6 +112,8 @@ i="0"
 
 echo "declare -A spDevices" >sp.config
 
+declare -A newDevices
+
 while [ "$i" -lt "$amount" ]; do
   i=$(($i + 1))
   printf "\n\n\n\n"
@@ -155,11 +157,13 @@ while [ "$i" -lt "$amount" ]; do
     printf "\n\nDevice $this_port detected!\n"
     dev_id=$(bash get_device_id.sh $this_port)
     echo "spDevices[$num]=$dev_id,$this_port" >>sp.config
+    newDevices[$num]=$this_port
   fi
 
 done
 
 echo "total=$amount" >>sp.config
+bash generate_yaml.sh "${newDevices[@]}"
 
 printf "\n\n\nDone! $amount instances set up.\n\n"
 exit

@@ -49,8 +49,3 @@ if [ "$change_something" == "1" ]; then
   echo "Generating docker-compose.yaml file"
   bash generate_yaml.sh "${newDevices[@]}"
 fi
-
-echo "END!"
-for ii in "${!newDevices[@]}"; do
-  echo ${newDevices[$ii]}
-done
