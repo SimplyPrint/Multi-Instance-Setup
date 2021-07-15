@@ -20,7 +20,7 @@ for device in $@; do
       - 8${index}:80
 
     devices:
-      - /dev/$device:/dev/$device
+      - $device:$device
 
     volumes:
       - ./sp${index}:/octoprint

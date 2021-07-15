@@ -46,7 +46,8 @@ done
 # Proceed
 if [ "$change_something" == "1" ]; then
   # A device has changed port!
-  echo "Something has changed! Gon' fuk' em up!"
+  echo "Generating docker-compose.yaml file"
+  bash generate_yaml.sh "${newDevices[@]}"
 fi
 
 echo "END!"
