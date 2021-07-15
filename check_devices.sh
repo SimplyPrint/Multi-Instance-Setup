@@ -47,5 +47,10 @@ done
 if [ "$change_something" == "1" ]; then
   # A device has changed port!
   echo "Generating docker-compose.yaml file"
-  bash generate_yaml.sh "${newDevices[@]}"
+  myarray=()
+  for index in ${!newDevices[@]}; do
+    myarray[$index]=${newDevices[$index]}
+  done
+  echo ${myarray[@]}
+  bash generate_yaml.sh "${myarray[@]}"
 fi

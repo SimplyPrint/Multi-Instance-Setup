@@ -163,7 +163,12 @@ while [ "$i" -lt "$amount" ]; do
 done
 
 echo "total=$amount" >>sp.config
-bash generate_yaml.sh "${newDevices[@]}"
+myarray=()
+for index in ${!newDevices[@]}; do
+  myarray[$index]=${newDevices[$index]}
+done
+echo ${myarray[@]}
+bash generate_yaml.sh "${myarray[@]}"
 
 printf "\n\n\nDone! $amount instances set up.\n\n"
 exit
