@@ -14,14 +14,13 @@ ssh to your raspberry
 First make sure it's up to date
 
 ```shell
-yes | sudo apt-get update
+yes | sudo apt-get update && echo "Done! You can now proceed."
 ```
 
 Now install and run the setup script
 
 ```shell
-curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/b1cf1385da6e26231a11be2238c6a004fb1046ee/docker_setup.sh -o docker_setup.sh
-sudo bash docker_setup.sh
+curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/docker_setup.sh -o docker_setup.sh && bash docker_setup.sh
 ```
 
 Then follow the setup steps as described in the terminal
