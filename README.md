@@ -14,7 +14,7 @@ ssh to your raspberry
 First make sure it's up to date
 
 ```shell
-sudo apt-get update && sudo apt-get upgrade
+yes | sudo apt-get update
 ```
 
 Now install and run the setup script
