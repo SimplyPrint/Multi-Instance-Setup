@@ -3,10 +3,10 @@ yes | apt-get update
 sudo -u pi curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
 usermod -aG docker pi
-sudo -u pi apt-get install libffi-dev libssl-dev
-sudo -u pi apt install python3-dev
-sudo -u pi apt-get install -y python3 python3-pip
-sudo -u pi pip3 install docker-compose
+apt-get install libffi-dev libssl-dev
+yes | apt install python3-dev
+apt-get install -y python3 python3-pip
+pip3 install docker-compose
 
 sudo -u pi curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/check_devices.sh -o check_devices.sh
 sudo -u pi curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/functions.sh -o functions.sh
