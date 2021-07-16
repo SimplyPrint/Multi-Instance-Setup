@@ -11,12 +11,6 @@ Open the "wpa_supplicant.conf" and change "code", "name" and "password" to your 
 
 ssh to your raspberry
 
-First make sure it's up to date
-
-```shell
-yes | sudo apt-get update && echo "Done! You can now proceed."
-```
-
 Now install and run the setup script
 
 ```shell
