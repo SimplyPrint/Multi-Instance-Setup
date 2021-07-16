@@ -170,5 +170,17 @@ done
 echo ${myarray[@]}
 bash generate_yaml.sh "${myarray[@]}"
 
+#Read current crontab
+crontab -l > mycron
+#Check if the cronjob already exist
+if [[ $mycron != *"* * * * * bash $(pwd)/check_devices.sh"* ]]; then
+  #echo new cronjob into crontab file
+  echo "* * * * * bash $(pwd)/check_devices.sh" >> mycron
+  #install new cron file
+  crontab mycron
+fi
+#Remove 
+rm mycron
+
 printf "\n\n\nDone! $amount instances set up.\n\n"
 exit
