@@ -14,7 +14,7 @@ ssh to your raspberry
 Now install and run the setup script
 
 ```shell
-curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/docker_setup.sh -o docker_setup.sh && bash docker_setup.sh
+curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/docker_setup.sh -o docker_setup.sh && sudo bash docker_setup.sh
 ```
 
 Then follow the setup steps as described in the terminal
