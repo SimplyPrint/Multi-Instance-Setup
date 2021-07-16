@@ -9,7 +9,15 @@ Download the 2 files called "ssh" and "wpa_supplicant.conf" and add them to the 
 
 Open the "wpa_supplicant.conf" and change "code", "name" and "password" to your contrycode, the name of your wifi and the password to your wifi.
 
-ssh to your raspberry and type:
+ssh to your raspberry
+
+First make sure it's up to date
+
+```shell
+sudo apt-get update && sudo apt-get upgrade
+```
+
+Now install and run the setup script
 
 ```shell
 curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/b1cf1385da6e26231a11be2238c6a004fb1046ee/docker_setup.sh -o docker_setup.sh
