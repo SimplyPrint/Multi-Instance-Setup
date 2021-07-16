@@ -1,7 +1,7 @@
 #!/bin/bash
 yes | apt-get update
 curl -fsSL https://get.docker.com -o get-docker.sh
-sh get-docker.sh
+sudo sh get-docker.sh
 usermod -aG docker pi
 apt-get install libffi-dev libssl-dev
 apt install python3-dev
@@ -14,4 +14,4 @@ curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/generate
 curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/get_device_id.sh -o get_device_id.sh
 curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/instance_setup.sh -o instance_setup.sh
 
-bash instance_setup.sh
+sudo -u pi bash instance_setup.sh
