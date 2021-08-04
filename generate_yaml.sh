@@ -13,7 +13,7 @@ for device in $@; do
 	((index+=1))
 	cat >> docker-compose.yaml <<-EOL
   sp${index}:
-    image: octoprint/octoprint
+    image: simplyprint/simplypi-docker
     restart: unless-stopped
 
     ports:
