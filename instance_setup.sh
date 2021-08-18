@@ -182,7 +182,8 @@ fi
 #Remove 
 rm mycron
 
-$(docker-compose up)
+printf "\n\nSetting up docker...\n"
+docker-compose up &>/dev/null &
 
 printf "\n\n\nDone! $amount instances set up.\n\n"
 exit
