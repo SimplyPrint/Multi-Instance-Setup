@@ -182,8 +182,8 @@ fi
 #Remove 
 rm mycron
 
-printf "\n\nSetting up docker...\n"
+printf "\n\n\Awesome! Setting up $amount instances.\n\n"
+printf "- Setting up Docker, this can take a while (up to 15 minutes), please wait\n(there will be no confirmation when it's done)\n"
 docker-compose up &>/dev/null &
 
-printf "\n\n\nDone! $amount instances set up.\n\n"
 exit
