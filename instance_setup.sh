@@ -6,7 +6,7 @@ crontab -l > mycron
 if [[ $mycron != *"@reboot bash $(pwd)/check_devices.sh"* ]]; then
   #Replace cronjob with empty string in crontab file
   #install new cron file
-  crontab ${mycron/"@reboot bash $(pwd)/check_devices.sh"}
+  crontab ${mycron/"@reboot bash $(pwd)/check_devices.sh"/""}
 fi
 #Remove
 rm mycron
