@@ -17,17 +17,15 @@ sudo -u pi curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Set
 chmod -R 775 .* 2>/dev/null
 chmod -R 775 . 2>/dev/null
 
+crontab -e
+
 #Read current crontab
-crontab -l > mycron
+sudo -u pi crontab -l > mycron
 #Check if the cronjob already exist
 if [[ $mycron != *"@reboot bash $(pwd)/check_devices.sh"* ]]; then
   #echo new cronjob into crontab file
-  echo "@reboot bash $(pwd)/instance_setup.sh" >> mycron
+  sudo -u pi echo "@reboot bash $(pwd)/instance_setup.sh" >> mycron
   #install new cron file
-  crontab mycron
+  sudo -u pi crontab mycron
 fi
-#Remove
 rm mycron
-
-
-sudo -u pi bash instance_setup.sh
