@@ -17,7 +17,7 @@ EOL
 index=-1
 
 # Add instances
-for ((i = 1 ; i-1 < $total ; i++)); do
+for ((i = 0 ; i < $total ; i++)); do
 	cat >> docker-compose.yaml <<-EOL
   sp${i}:
     image: simplyprint/simplypi-docker
@@ -28,21 +28,20 @@ for ((i = 1 ; i-1 < $total ; i++)); do
 
     volumes:
       - ./sp${i}:/octoprint
-      
+
     environment:
       - ENABLE_MJPG_STREAMER=true
-      
+
 	EOL
-	temp="${spDevices[$((i - 1))]}"
+	temp="${spDevices[$i]}"
         device="${temp#*,}"
-	
+
 	if [[ $@ =~ $device ]]; then
 		cat >> docker-compose.yaml <<-EOL
     devices:
       - $device:$device
-      
-      		EOL
+
+EOL
 	fi
 done
-
 docker-compose up
