@@ -8,10 +8,13 @@ This project aims to make it possible for anyone to **set up multiple instances 
 * Download the following two files _(by clicking on the link;)_ _["ssh"](https://simplyprint.io/multi-instance/dwnld?num=1)_ and _["wpa_supplicant.conf"](https://simplyprint.io/multi-instance/dwnld?num=2)_ and add them to the boot drive of the SD card
 * Open the _"wpa_supplicant.conf"_ and change network details _(network SSID, password and country)_
 * Connect to your Pi / Linux machine via. SSH or by plugging a keyboard into the device
-* Now install and run the setup script;
+* Now download and run the install script;
   * Run the command; _(copy the line and enter)_
    ```shell
    curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/docker_setup.sh -o docker_setup.sh && sudo bash docker_setup.sh
    ```
-   * _(this can take a few minutes)_
-   * When the install is done, it will ask for your input; follow the setup steps described 
+   * _(this can take a few minutes, and it will restart when it's done)_
+* Connect to it again, and run the setup script, it will ask for your input; follow the setup steps described.
+```shell
+bash instance_setup.sh
+```
