@@ -1,16 +1,5 @@
 #!/bin/bash
 
-#Read current crontab
-crontab -l > mycron
-#Check if the cronjob already exist
-if [[ $mycron != *"@reboot bash $(pwd)/check_devices.sh"* ]]; then
-  #Replace cronjob with empty string in crontab file
-  #install new cron file
-  crontab ${mycron/"@reboot bash $(pwd)/check_devices.sh"/""}
-fi
-#Remove
-rm mycron
-
 sep="# ---------------------------------- #"
 printf "\n\n"
 echo $sep
