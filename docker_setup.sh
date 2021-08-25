@@ -17,7 +17,7 @@ sudo -u pi curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Set
 chmod -R 775 .* 2>/dev/null
 chmod -R 775 . 2>/dev/null
 
-crontab -e
+sudo -u pi crontab -e
 
 #Read current crontab
 sudo -u pi crontab -l > mycron
