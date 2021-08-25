@@ -184,6 +184,13 @@ rm mycron
 
 printf "\n\nAwesome! Setting up $amount instances.\n\n"
 printf "Setting up Docker, this can take a while (up to 15 minutes), please wait\n(there will be no confirmation when it's done)\n"
+
+printf "\nHere are the links for octoprint, they will be offline until Docker is ready"
+ip=$(ifconfig wlan0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
+for ( i=0 ; i < $amount ; i++); do
+  echo "http://$ip:8$i/"
+done
+
 docker-compose up &>/dev/null &
 
 exit
