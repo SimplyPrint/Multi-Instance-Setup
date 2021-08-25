@@ -17,13 +17,4 @@ sudo -u pi curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Set
 chmod -R 775 .* 2>/dev/null
 chmod -R 775 . 2>/dev/null
 
-sudo -u pi echo "@reboot bash $(pwd)/instance_setup.sh" >> newcron
-#Read current crontab
-crontab -u pi -l > oldcron
-if [[ -n "$oldcron" ]]; then
-  $oldcron >> newcron
-fi
-crontab -u pi newcron
-rm oldcron
-rm newcron
 reboot
