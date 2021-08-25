@@ -26,3 +26,4 @@ fi
 crontab -u pi newcron
 rm oldcron
 rm newcron
+reboot
