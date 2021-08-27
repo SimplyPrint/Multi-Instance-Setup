@@ -44,4 +44,4 @@ for ((i = 0 ; i < $total ; i++)); do
 EOL
 	fi
 done
-docker-compose up
+docker-compose up &>/dev/null &
