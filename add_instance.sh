@@ -8,7 +8,7 @@ printf "\n\nHow many SimplyPrint instances do you wish to set up?\n"
 read -n 1 addTotal
 newTotal=$(($total + $addTotal))
 
-printf "\nSetting up $addTotal instances"
+printf "\n\nSetting up $addTotal instances"
 
 . functions.sh
 
