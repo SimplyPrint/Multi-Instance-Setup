@@ -145,7 +145,7 @@ printf "Setting up Docker, this can take a while (up to 15 minutes), please wait
 
 printf "\nHere are the links for octoprint, they will be offline until Docker is ready"
 ip=$(ifconfig wlan0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
-for (( i=0 ; i < $amount ; i++)); do
+for (( i=0 ; i < $total ; i++)); do
   echo "http://$ip:8$i/"
 done
 
