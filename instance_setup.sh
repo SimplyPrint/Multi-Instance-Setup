@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [[ ! -e add_instance.sh ]]; then
+  curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/add_instance.sh -o add_instance.sh
+fi
+
 echo "total=0" >sp.config
 echo "declare -A spDevices" >>sp.config
 
