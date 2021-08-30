@@ -5,8 +5,8 @@
 sep="# ---------------------------------- #"
 printf "\nHow many SimplyPrint instances do you wish to set up?"
 
-read addAmount
-newAmount=$(($amount + $addAmount))
+read addTotal
+newAmount=$(($total + $addTotal))
 
 . functions.sh
 
@@ -14,7 +14,7 @@ newAmount=$(($amount + $addAmount))
 get_ports
 last_total_ports=$total_ports
 
-for ((i = $amount ; i < $newAmount ; i++)); do
+for ((i = $total ; i < $newTotal ; i++)); do
   printf "\n\n\n\n"
   echo $sep
   echo "- Printer $i setup"
