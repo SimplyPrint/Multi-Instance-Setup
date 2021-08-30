@@ -115,7 +115,68 @@ read -n 1 -s -r -p "Press any key when all USB cables are removed ..."
 
 #declare -A newDevices
 
-add_instance.sh
+## før
+
+sep="# ---------------------------------- #"
+printf "\nHow many SimplyPrint instances do you wish to set up?"
+
+read addAmount
+newAmount=$(($amount + $addAmount))
+
+. functions.sh
+
+# Get ports now that all are removed;
+get_ports
+last_total_ports=$total_ports
+
+for ((i = $amount ; i < $newAmount ; i++)); do
+  printf "\n\n\n\n"
+  echo $sep
+  echo "- Printer $i setup"
+
+  if [ $i -gt "1" ]; then
+    echo " !! Do NOT remove any USB cables !! "
+  fi
+
+  echo "Insert the USB cable into the pi (cable must be connected to the printer, and printer must be turned on)"
+  printf "\n"
+
+  read -n 1 -s -r -p "Press any key when cable is inserted... "
+  
+  last_ports=$return_ports # save last ports
+  get_ports                # get ports now
+
+  if [ "$total_ports" -lt "$last_total_ports" ] || [ "$total_ports" -eq "$last_total_ports" ]; then
+    printf "\n\n\n # !!! Failed; has same amount of ports as before. Either previous USB was plugged out, or new one wasn't inserted / registered\n\n"
+    exit
+  fi
+
+  last_total_ports=$total_ports # set new 'last'
+  this_port=""
+
+  for x in $return_ports; do
+    if [[ ! " $last_ports " =~ " $x " ]]; then
+      # This (new) value doesn't exist in old array; is the new device
+      this_port=$x
+    fi
+  done
+
+  if [ "$this_port" == "" ]; then
+    # Could not find a new port...
+    printf "\n\n\n # !!! Failed; New device not detected, try again - maybe with a different cable? Make sure the printer's power supply is turned on.\n\n"
+    echo "" >sp.config
+    exit
+  else
+    # Found port! Let's continue
+    printf "\n\nDevice $this_port detected!\n"
+    dev_id=$(bash get_device_id.sh $this_port)
+    echo "spDevices[$i]=$dev_id,$this_port" >>sp.config
+  fi
+
+done
+sed -i "s/total=[0-99]/total=${newTotal}/gI" sp.config
+
+## efter
 
 myarray=()
 for index in ${!spDevices[@]}; do
@@ -141,7 +202,7 @@ printf "Setting up Docker, this can take a while (up to 15 minutes), please wait
 
 printf "\nHere are the links for octoprint, they will be offline until Docker is ready"
 ip=$(ifconfig wlan0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
-for ( i=0 ; i < $amount ; i++); do
+for (( i=0 ; i < $amount ; i++)); do
   echo "http://$ip:8$i/"
 done
 
