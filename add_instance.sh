@@ -3,10 +3,12 @@
 . sp.config
 
 sep="# ---------------------------------- #"
-printf "\nHow many SimplyPrint instances do you wish to set up?"
+printf "\n\nHow many SimplyPrint instances do you wish to set up?\n"
 
-read addTotal
+read -n 1 addTotal
 newAmount=$(($total + $addTotal))
+
+printf "\nSetting up $addTotal instances"
 
 . functions.sh
 
