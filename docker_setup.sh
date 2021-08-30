@@ -18,6 +18,6 @@ sudo -u pi curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Set
 chmod -R 775 .* 2>/dev/null
 chmod -R 775 . 2>/dev/null
 
-printf "\n\n--- Ready! ---\n\n\nThe raspberry pi will now reboot, press any key to continue"
+printf "\n\n--- Ready! ---\n\n\nThe raspberry pi will now reboot, press Enter to continue"
 read
 reboot
