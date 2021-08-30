@@ -87,87 +87,39 @@ fi
 
 # Pi-validation done
 # How many instances to set up?
-printf "How many SimplyPrint instances do you wish to set up?\nEnter a number between 2 and $rec_max; "
+#printf "How many SimplyPrint instances do you wish to set up?\nEnter a number between 2 and $rec_max; "
 
-read amount
+#read amount
 
-if [ "$amount" -le "1" ]; then
-  echo "Must set up at least 2 - otherwise there's no point"
-  exit
-fi
+#if [ "$amount" -le "1" ]; then
+#  echo "Must set up at least 2 - otherwise there's no point"
+#  exit
+#fi
 
-printf "\n\n\n\n"
-echo $sep
-printf "\nGreat! Let's set up $amount printers!\n\n### Please remove all USB cables from your Raspberry Pi (except USB-hubs if you plan on using one)!\n\n"
+#printf "\n\n\n\n"
+#echo $sep
+#printf "\nGreat! Let's set up $amount printers!\n\n### Please remove all USB cables from your Raspberry Pi (except USB-hubs if you plan on using one)!\n\n"
 
-last_total_ports=0
+#last_total_ports=0
 
 read -n 1 -s -r -p "Press any key when all USB cables are removed ..."
 
-. functions.sh
+#. functions.sh
 
 # Get ports now that all are removed;
-get_ports
-last_total_ports=$total_ports
+#get_ports
+#last_total_ports=$total_ports
 
 # Loop printers and set each one up
-i="0"
+#i="0"
 
-declare -A newDevices
+#declare -A newDevices
 
-while [ "$i" -lt "$amount" ]; do
-  i=$(($i + 1))
-  printf "\n\n\n\n"
-  echo $sep
-  echo "- Printer $i setup"
+add_instance.sh
 
-  if [ $i -gt "1" ]; then
-    echo " !! Do NOT remove any USB cables !! "
-  fi
-
-  echo "Insert the USB cable into the pi (cable must be connected to the printer, and printer must be turned on)"
-  printf "\n"
-
-  read -n 1 -s -r -p "Press any key when cable is inserted... "
-  last_ports=$return_ports # save last ports
-  get_ports                # get ports now
-
-  if [ "$total_ports" -lt "$last_total_ports" ] || [ "$total_ports" -eq "$last_total_ports" ]; then
-    printf "\n\n\n # !!! Failed; has same amount of ports as before. Either previous USB was plugged out, or new one wasn't inserted / registered\n\n"
-    exit
-  fi
-
-  last_total_ports=$total_ports # set new 'last'
-  this_port=""
-
-  for x in $return_ports; do
-    if [[ ! " $last_ports " =~ " $x " ]]; then
-      # This (new) value doesn't exist in old array; is the new device
-      this_port=$x
-    fi
-  done
-
-  if [ "$this_port" == "" ]; then
-    # Could not find a new port...
-    printf "\n\n\n # !!! Failed; New device not detected, try again - maybe with a different cable? Make sure the printer's power supply is turned on.\n\n"
-    echo "" >sp.config
-    exit
-  else
-    # Found port! Let's continue
-    num=$(($i - 1))
-    printf "\n\nDevice $this_port detected!\n"
-    dev_id=$(bash get_device_id.sh $this_port)
-    echo "spDevices[$num]=$dev_id,$this_port" >>sp.config
-    newDevices[$num]=$this_port
-  fi
-
-done
-
-#echo "total=$amount" >>sp.config
-sed -i "s/total=[0-99]/total=${amount}/gI" sp.config
 myarray=()
-for index in ${!newDevices[@]}; do
-  myarray[$index]=${newDevices[$index]}
+for index in ${!spDevices[@]}; do
+  myarray[$index]=${spDevices[$index]}
 done
 echo ${myarray[@]}
 bash generate_yaml.sh "${myarray[@]}"
