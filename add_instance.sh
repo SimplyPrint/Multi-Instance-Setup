@@ -3,12 +3,18 @@
 . sp.config
 
 sep="# ---------------------------------- #"
-printf "\nHow many instances would you like to add?"
+printf "\nHow many SimplyPrint instances do you wish to set up?"
 
 read addAmount
 newAmount=$(($amount + $addAmount))
 
-for ((i = $amount ; i <  newAmount; i++)); do
+. functions.sh
+
+# Get ports now that all are removed;
+get_ports
+last_total_ports=$total_ports
+
+for ((i = $amount ; i < $newAmount ; i++)); do
   printf "\n\n\n\n"
   echo $sep
   echo "- Printer $i setup"
@@ -21,6 +27,7 @@ for ((i = $amount ; i <  newAmount; i++)); do
   printf "\n"
 
   read -n 1 -s -r -p "Press any key when cable is inserted... "
+  
   last_ports=$return_ports # save last ports
   get_ports                # get ports now
 
@@ -46,13 +53,10 @@ for ((i = $amount ; i <  newAmount; i++)); do
     exit
   else
     # Found port! Let's continue
-    num=$(($i - 1))
     printf "\n\nDevice $this_port detected!\n"
     dev_id=$(bash get_device_id.sh $this_port)
-    echo "spDevices[$num]=$dev_id,$this_port" >>sp.config
-    newDevices[$num]=$this_port
+    echo "spDevices[$i]=$dev_id,$this_port" >>sp.config
   fi
 
 done
-
-$amount=newAmount
+sed -i "s/total=[0-99]/total=${newTotal}/gI" sp.config
