@@ -6,7 +6,7 @@ sep="# ---------------------------------- #"
 printf "\n\nHow many SimplyPrint instances do you wish to set up?\n"
 
 read -n 1 addTotal
-newAmount=$(($total + $addTotal))
+newTotal=$(($total + $addTotal))
 
 printf "\nSetting up $addTotal instances"
 
