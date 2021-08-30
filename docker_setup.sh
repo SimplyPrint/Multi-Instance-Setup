@@ -13,6 +13,7 @@ sudo -u pi curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Set
 sudo -u pi curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/generate_yaml.sh -o generate_yaml.sh
 sudo -u pi curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/get_device_id.sh -o get_device_id.sh
 sudo -u pi curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/instance_setup.sh -o instance_setup.sh
+sudo -u pi curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/add_instance.sh -o add_instance.sh
 
 chmod -R 775 .* 2>/dev/null
 chmod -R 775 . 2>/dev/null
