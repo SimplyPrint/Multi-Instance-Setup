@@ -117,7 +117,7 @@ read -n 1 -s -r -p "Press any key when all USB cables are removed ..."
 
 ## før
 
-add_instance.sh
+. add_instance.sh
 
 ## efter
 
