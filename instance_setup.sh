@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "total=0" >sp.config
+echo "declare -A spDevices" >>sp.config
+
 sep="# ---------------------------------- #"
 printf "\n\n"
 echo $sep
@@ -110,8 +113,6 @@ last_total_ports=$total_ports
 # Loop printers and set each one up
 i="0"
 
-echo "declare -A spDevices" >sp.config
-
 declare -A newDevices
 
 while [ "$i" -lt "$amount" ]; do
@@ -162,7 +163,8 @@ while [ "$i" -lt "$amount" ]; do
 
 done
 
-echo "total=$amount" >>sp.config
+#echo "total=$amount" >>sp.config
+sed -i "s/total=[0-99]/total=${amount}/gI" sp.config
 myarray=()
 for index in ${!newDevices[@]}; do
   myarray[$index]=${newDevices[$index]}
