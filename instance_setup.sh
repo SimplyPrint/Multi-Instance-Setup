@@ -89,48 +89,9 @@ else
 
 fi
 
-# Pi-validation done
-# How many instances to set up?
-#printf "How many SimplyPrint instances do you wish to set up?\nEnter a number between 2 and $rec_max; "
-
-#read amount
-
-#if [ "$amount" -le "1" ]; then
-#  echo "Must set up at least 2 - otherwise there's no point"
-#  exit
-#fi
-
-#printf "\n\n\n\n"
-#echo $sep
-#printf "\nGreat! Let's set up $amount printers!\n\n### Please remove all USB cables from your Raspberry Pi (except USB-hubs if you plan on using one)!\n\n"
-
-#last_total_ports=0
-
 read -n 1 -s -r -p "Press any key when all USB cables are removed ..."
 
-#. functions.sh
-
-# Get ports now that all are removed;
-#get_ports
-#last_total_ports=$total_ports
-
-# Loop printers and set each one up
-#i="0"
-
-#declare -A newDevices
-
-## før
-
 . add_instance.sh
-
-## efter
-
-myarray=()
-for index in ${!spDevices[@]}; do
-  myarray[$index]=${spDevices[$index]}
-done
-echo ${myarray[@]}
-bash generate_yaml.sh "${myarray[@]}"
 
 #Read current crontab
 crontab -l > mycron
