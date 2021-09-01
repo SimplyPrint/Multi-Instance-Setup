@@ -3,9 +3,9 @@
 . sp.config
 
 sep="# ---------------------------------- #"
-printf "\n\nHow many SimplyPrint instances do you wish to set up?\n"
+printf "\n\nHow many SimplyPrint instances do you wish to set up? (write a number and press Enter)\n"
 
-read -n 1 addTotal
+read -n addTotal
 newTotal=$(($total + $addTotal))
 
 printf "\n\nSetting up $addTotal instances"
@@ -19,7 +19,7 @@ last_total_ports=$total_ports
 for ((i = $total ; i < $newTotal ; i++)); do
   printf "\n\n\n\n"
   echo $sep
-  echo "- Printer $i setup"
+  echo "- Printer $((i + 1)) setup"
 
   if [ $i -gt "1" ]; then
     echo " !! Do NOT remove any USB cables !! "
@@ -61,6 +61,13 @@ for ((i = $total ; i < $newTotal ; i++)); do
   fi
 
 done
+
+myarray=()
+for index in ${!spDevices[@]}; do
+  myarray[$index]=${spDevices[$index]}
+done
+echo ${myarray[@]}
+bash generate_yaml.sh "${myarray[@]}"
 
 printf "\nHere are the links for octoprint, they will be offline until Docker is ready\n"
 ip=$(ifconfig wlan0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
