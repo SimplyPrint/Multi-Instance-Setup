@@ -16,6 +16,8 @@ services:
 EOL
 index=-1
 
+ports=$(ls /dev/ttyUSB* /dev/ttyACM*)
+
 # Add instances
 for ((i = 0 ; i < $total ; i++)); do
 	cat >> docker-compose.yaml <<-EOL
@@ -36,7 +38,7 @@ for ((i = 0 ; i < $total ; i++)); do
 	temp="${spDevices[$i]}"
         device="${temp#*,}"
 
-	if [[ $@ =~ $device ]]; then
+	if [[ $ports =~ $device ]]; then
 		cat >> docker-compose.yaml <<-EOL
     devices:
       - $device:$device
