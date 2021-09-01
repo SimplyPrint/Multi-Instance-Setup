@@ -49,6 +49,9 @@ if [ "$change_something" == "1" ]; then
   echo "Generating docker-compose.yaml file"
   myarray=()
   for index in ${!newDevices[@]}; do
+    temp="${spDevices[$i]}"
+    device="${temp%*,}"
+    sed -i "s/spDevices[$index]=$device,*,/spDevices[$index]=$device,${newDevice[$index]}/gI" sp.config
     myarray[$index]=${newDevices[$index]}
   done
   echo ${myarray[@]}
