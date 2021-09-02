@@ -46,14 +46,12 @@ done
 # Proceed
 if [ "$change_something" == "1" ]; then
   # A device has changed port!
-  echo "Generating docker-compose.yaml file"
-  myarray=()
+  printf "\nGenerating docker-compose.yaml file\n\n"
   for index in ${!newDevices[@]}; do
-    spDevice="${spDevices[$i]}"
+    #arrIN=(${spDevices[$index]//,/})
+    spDevice="${spDevices[$index]}"
     device="${temp%*,}"
     sed -i "s/spDevices[$index]=$spDevice/spDevices[$index]=$device${newDevice[$index]}/gI" sp.config
-    myarray[$index]=${newDevices[$index]}
   done
-  echo ${myarray[@]}
-  bash generate_yaml.sh "${myarray[@]}"
+  bash generate_yaml.sh
 fi
