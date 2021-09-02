@@ -62,12 +62,7 @@ for ((i = $total ; i < $newTotal ; i++)); do
 
 done
 
-myarray=()
-for index in ${!spDevices[@]}; do
-  myarray[$index]=${spDevices[$index]}
-done
-echo ${myarray[@]}
-bash generate_yaml.sh "${myarray[@]}"
+bash generate_yaml.sh
 
 printf "\nHere are the links for octoprint, they will be offline until Docker is ready\n"
 ip=$(ifconfig wlan0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
