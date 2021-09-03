@@ -54,6 +54,9 @@ if [ "$change_something" == "1" ]; then
     val=${spDevices[$ii]}
     arrIN=(${val//,/ })
     spDevice="${spDevices[$index]}"
+    echo "Changeing"
+    echo "From: $val"
+    echo "To: ${arrIN[0]},${newDevices[$index]}"
     sed -i "s-spDevices\[$index\]=${arrIN[0]},${arrIN[1]}-spDevices\[$index\]=${arrIN[0]},${newDevices[$index]}-gI" sp.config
   done
   bash generate_yaml.sh
