@@ -50,8 +50,8 @@ if [ "$change_something" == "1" ]; then
   for index in ${!newDevices[@]}; do
     #arrIN=(${spDevices[$index]//,/})
     spDevice="${spDevices[$index]}"
-    device="${temp%*,}"
-    sed -i "s/spDevices[$index]=$spDevice/spDevices[$index]=$device${newDevice[$index]}/gI" sp.config
+    device="${spDevice%*,}"
+    sed -i "s-spDevices\[$index\]=$spDevice-spDevices\[$index\]=${device}${newDevice[$index]}-gI" sp.config
   done
   bash generate_yaml.sh
 fi
