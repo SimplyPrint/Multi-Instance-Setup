@@ -51,7 +51,6 @@ for ((i = $total ; i < $newTotal ; i++)); do
   if [ "$this_port" == "" ]; then
     # Could not find a new port...
     printf "\n\n\n # !!! Failed; New device not detected, try again - maybe with a different cable? Make sure the printer's power supply is turned on.\n\n"
-    echo "" >sp.config
     exit
   else
     # Found port! Let's continue
