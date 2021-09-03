@@ -11,6 +11,7 @@ change_something=0
 declare -A newDevices
 
 for ii in "${!spDevices[@]}"; do
+  echo "Checking sp$ii: spDevices[$ii]"
   val=${spDevices[$ii]}
   arrIN=(${val//,/ })
 
@@ -35,12 +36,14 @@ for ii in "${!spDevices[@]}"; do
 
   # Check if it was found
   if [ "$found" == "0" ]; then
+    echo "Port not found"
     # This device is no longer plugged in, consider it a change
     lastPort=""
     change_something=1
   fi
 
   newDevices[$ii]=$lastPort
+  echo ""
 done
 
 # Proceed
@@ -48,10 +51,9 @@ if [ "$change_something" == "1" ]; then
   # A device has changed port!
   printf "\nGenerating docker-compose.yaml file\n\n"
   for index in ${!newDevices[@]}; do
-    #arrIN=(${spDevices[$index]//,/})
+    arrIN=(${spDevices[$index]//,/})
     spDevice="${spDevices[$index]}"
-    device="${spDevice%*,}"
-    sed -i "s-spDevices\[$index\]=$spDevice-spDevices\[$index\]=${device}${newDevice[$index]}-gI" sp.config
+    sed -i "s-spDevices\[$index\]=$spDevice-spDevices\[$index\]=${arrIN[0]},${newDevices[$index]}-gI" sp.config
   done
   bash generate_yaml.sh
 fi
