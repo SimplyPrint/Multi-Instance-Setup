@@ -11,7 +11,7 @@ This project aims to make it possible for anyone to **set up multiple instances 
 * Now download and run the install script;
   * Run the command; _(copy the line and enter)_
    ```shell
-   curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/docker_setup.sh -o docker_setup.sh && sudo bash docker_setup.sh
+   curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/docker_setup.sh -o docker_setup.sh && sudo bash docker_setup.sh && logout
    ```
    * _(this can take a few minutes, and it will restart when it's done)_
 * Connect to it again, and run the setup script, it will ask for your input; follow the setup steps described.
