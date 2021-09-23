@@ -105,6 +105,8 @@ fi
 #Remove 
 rm mycron
 
+. generate_yaml.sh
+
 #printf "\n\nAwesome! Setting up $amount instances.\n\n"
 printf "Setting up Docker, this can take a while (up to 15 minutes), please wait\n(there will be no confirmation when it's done)\n"
 
