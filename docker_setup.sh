@@ -20,4 +20,4 @@ chmod -R 775 . 2>/dev/null
 
 printf "\n\n--- Ready! ---\n\n\nThe raspberry pi will now reboot, press Enter to continue"
 read
-exit
+sudo logout
