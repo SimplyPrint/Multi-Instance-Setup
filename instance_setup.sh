@@ -108,6 +108,6 @@ rm mycron
 . generate_yaml.sh
 
 #printf "\n\nAwesome! Setting up $amount instances.\n\n"
-printf "Setting up Docker, this can take a while (up to 15 minutes), please wait\n(there will be no confirmation when it's done)\n"
+printf "Setting up Docker, this can take a while (up to 15 minutes), please wait\n(there will be no confirmation when it's done)\nRun \"docker-compose ps\" to check if it's running and \"docker-compose up\" if it's not"
 
 exit
