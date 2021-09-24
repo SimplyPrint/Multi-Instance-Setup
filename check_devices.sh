@@ -51,7 +51,7 @@ if [ "$change_something" == "1" ]; then
   # A device has changed port!
   printf "\nGenerating docker-compose.yaml file\n\n"
   for index in ${!newDevices[@]}; do
-    val=${spDevices[$ii]}
+    val=${spDevices[$index]}
     arrIN=(${val//,/ })
     spDevice="${spDevices[$index]}"
     echo "Changeing"
