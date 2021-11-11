@@ -98,8 +98,8 @@ crontab -l > mycron
 #Check if the cronjob already exist
 if [[ $mycron != *"* * * * * bash $(pwd)/check_devices.sh"* ]]; then
   #echo new cronjob into crontab file
-  echo "@reboot bash $(pwd)/cron_check.sh" >> mycron
-  echo "* * * * * bash $(pwd)/cron_check.sh" >> mycron
+  echo "@reboot bash $(pwd)/check_devices.sh" >> mycron
+  echo "* * * * * bash $(pwd)/check_devices.sh && sleep 10 && bash $(pwd)/check_devices.sh && sleep 10 && bash $(pwd)/check_devices.sh && sleep 10 && bash $(pwd)/check_devices.sh && sleep 10 && bash $(pwd)/check_devices.sh" >> mycron
   #install new cron file
   crontab mycron
 fi
