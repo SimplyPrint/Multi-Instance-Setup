@@ -38,7 +38,7 @@ for ((i = 0 ; i < $total ; i++)); do
 	temp="${spDevices[$i]}"
         device="${temp#*,}"
 
-	if [[ $ports =~ $device ]]; then
+	if [[ $ports =~ $device ]] && [[ -n $device ]]; then
 		cat >> docker-compose.yaml <<-EOL
     devices:
       - $device:$device
