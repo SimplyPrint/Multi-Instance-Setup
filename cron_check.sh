@@ -8,4 +8,3 @@ sleep 10
 bash check_devices.sh
 sleep 10
 bash check_devices.sh
-sleep 10
