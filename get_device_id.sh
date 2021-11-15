@@ -1,17 +1,33 @@
 #!/bin/bash
 
-ai=$(udevadm info $1)
+usbInfo=$(udevadm info $1)
 
-## Other
-cut0="${ai#*MAJOR=}"
-cut1="${ai#*ID_VENDOR_ID=}"
-cut2="${ai#*ID_MODEL_ID=}"
-cut3="${ai#*ID_REVISION=}"
-#cut4="${ai#*ID_USB_DRIVER=}" # :${cut4::7}
-id="${cut0::3}:${cut1::4}:${cut2::4}:${cut3::4}"
+id="id"
 
 # For Prusa
-#cut5="${ai#*ID_SERIAL_SHORT=}"
-#id="${cut5::19}"
+if [[ $usbInfo == *"ID_SERIAL_SHORT"* ]]; then
+  cut=${usbInfo#*ID_SERIAL_SHORT=}
+  cut1=${cut%%E*}
+  id+=":${cut1::(-1)}"
+fi
+
+# Other
+if [[ $usbInfo == *"ID_VENDOR_ID"* ]]; then
+  cut=${usbInfo#*ID_VENDOR_ID=}
+  cut1=${cut%%E*}
+  id+=":${cut1::(-1)}"
+fi
+
+if [[ $usbInfo == *"ID_MODEL_ID"* ]]; then
+  cut=${usbInfo#*ID_MODEL_ID=}
+  cut1=${cut%%E*}
+  id+=":${cut1::(-1)}"
+fi
+
+if [[ $usbInfo == *"ID_REVISION"* ]]; then
+  cut=${usbInfo#*ID_REVISION=}
+  cut1=${cut%%E*}
+  id+=":${cut1::(-1)}"
+fi
 
 echo $id
