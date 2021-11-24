@@ -2,6 +2,7 @@
 
 total_ports=0
 return_ports=()
+
 function get_ports() {
   total_ports=0
   now_ports=$(ls /dev/ttyUSB* /dev/ttyACM* 2>/dev/null)
