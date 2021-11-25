@@ -23,21 +23,21 @@ curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/upd
 bash update.sh
 
 #Read current crontab
-  myCron=$(crontab -l)
-  #Check if the cronjob already exist
-  if [[ $myCron != *"@reboot cd $(pwd) && bash cron_check.sh"* ]]; then
-    #echo new cronjob into crontab file
-    {
-      echo "@reboot cd $(pwd) && bash cron_check.sh"
-      echo "* * * * * cd $(pwd) && bash cron_check.sh"
-      echo "0 0 * * * cd $(pwd) && curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/update.sh -o update.sh"
-      echo "0 0 * * 0 cd $(pwd) && bash log_controller.sh"
-    } >>myCron
-    #install new cron file
-    crontab myCron
-  fi
-  #Remove
-  rm myCron
+myCron=$(crontab -l)
+#Check if the cronjob already exist
+if [[ $myCron != *"@reboot cd $(pwd) && bash cron_check.sh"* ]]; then
+  #echo new cronjob into crontab file
+  {
+    echo "@reboot cd $(pwd) && bash cron_check.sh"
+    echo "* * * * * cd $(pwd) && bash cron_check.sh"
+    echo "0 0 * * * cd $(pwd) && curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/update.sh -o update.sh"
+    echo "0 0 * * 0 cd $(pwd) && bash log_controller.sh"
+  } >>myCron
+  #install new cron file
+  crontab myCron
+fi
+#Remove
+rm myCron
 
 chmod -R 775 .* 2>/dev/null
 chmod -R 775 . 2>/dev/null

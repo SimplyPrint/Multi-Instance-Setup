@@ -20,7 +20,7 @@ get_ports
 # shellcheck disable=SC2154
 last_total_ports=$total_ports
 
-for ((i = total ; i < newTotal ; i++)); do
+for ((i = total; i < newTotal; i++)); do
   printf "\n\n\n\n"
   echo "$sep"
   echo "- Printer $((i + 1)) setup"
@@ -33,7 +33,7 @@ for ((i = total ; i < newTotal ; i++)); do
   printf "\n"
 
   read -n 1 -s -r -p "Press any key when cable is inserted... "
-  
+
   # shellcheck disable=SC2154
   last_ports=$return_ports # save last ports
   get_ports                # get ports now
@@ -64,13 +64,12 @@ for ((i = total ; i < newTotal ; i++)); do
     echo "spDevices[$i]=$dev_id,$this_port" >>sp.config
     printf "Added to config: spDevices[$i]=%s\n\n" "$dev_id,$this_port"
   fi
-
 done
 
 printf "\nHere are the links for octoprint, they will be offline until Docker is ready\n"
 ip=$(ifconfig wlan0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
 echo "ip: $ip"
-for ((i = total ; i < newTotal ; i++)); do
+for ((i = total; i < newTotal; i++)); do
   echo "http://$ip:8$i/"
 done
 
