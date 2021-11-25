@@ -60,7 +60,7 @@ for ((i = total; i < newTotal; i++)); do
   else
     # Found port! Let's continue
     printf "\n\nDevice %s detected!\n" "$this_port"
-    dev_id=$(bash get_device_id.sh this_port)
+    dev_id=$(bash get_device_id.sh $this_port)
     echo "spDevices[$i]=$dev_id,$this_port" >>sp.config
     printf "Added to config: spDevices[$i]=%s\n\n" "$dev_id,$this_port"
   fi
