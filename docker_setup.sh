@@ -5,6 +5,10 @@ sudo -u pi mkdir "SimplyPrint"
 cd SimplyPrint
 
 sudo -u pi mkdir "logs"
+sudo -u pi touch logs/log.txt
+sudo -u pi touch logs/device.log
+sudo -u pi touch logs/scripts.log
+
 sudo -u pi echo "Log created $(date -u)" >>"$(pwd)"/logs/log.txt
 sudo -u pi echo "Log created $(date -u)" >>"$(pwd)"/logs/device.log
 sudo -u pi echo "Log created $(date -u)" >>"$(pwd)"/logs/scripts.log
