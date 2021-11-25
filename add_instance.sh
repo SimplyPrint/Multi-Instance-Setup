@@ -1,27 +1,31 @@
 #!/bin/bash
 
+echo "$(date -u) - add_instance.sh" >>"$(pwd)"/logs/scripts.log
+
 . sp.config
 
 sep="# ---------------------------------- #"
 printf "\n\nHow many SimplyPrint instances do you wish to set up? (write a number and press Enter)\n"
 
-read addTotal
-newTotal=$(($total + $addTotal))
+read -r addTotal
+# shellcheck disable=SC2154
+newTotal=$((total + addTotal))
 
-printf "\n\nSetting up $addTotal instances"
+printf "\n\nSetting up %s instances" "$addTotal"
 
 . functions.sh
 
 # Get ports now that all are removed;
 get_ports
+# shellcheck disable=SC2154
 last_total_ports=$total_ports
 
-for ((i = $total ; i < $newTotal ; i++)); do
+for ((i = total ; i < newTotal ; i++)); do
   printf "\n\n\n\n"
-  echo $sep
+  echo "$sep"
   echo "- Printer $((i + 1)) setup"
 
-  if [ $i -gt "1" ]; then
+  if [ "$i" -gt "1" ]; then
     echo " !! Do NOT remove any USB cables !! "
   fi
 
@@ -30,6 +34,7 @@ for ((i = $total ; i < $newTotal ; i++)); do
 
   read -n 1 -s -r -p "Press any key when cable is inserted... "
   
+  # shellcheck disable=SC2154
   last_ports=$return_ports # save last ports
   get_ports                # get ports now
 
@@ -55,7 +60,7 @@ for ((i = $total ; i < $newTotal ; i++)); do
   else
     # Found port! Let's continue
     printf "\n\nDevice $this_port detected!\n"
-    dev_id=$(bash get_device_id.sh $this_port)
+    dev_id=$(bash get_device_id.sh this_port)
     echo "spDevices[$i]=$dev_id,$this_port" >>sp.config
     printf "Added to config: spDevices[$i]=$dev_id,$this_port\n\n"
   fi
@@ -65,10 +70,10 @@ done
 printf "\nHere are the links for octoprint, they will be offline until Docker is ready\n"
 ip=$(ifconfig wlan0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
 echo "ip: $ip"
-for ((i = $total ; i < $newTotal ; i++)); do
+for ((i = total ; i < newTotal ; i++)); do
   echo "http://$ip:8$i/"
 done
 
 sed -i "s/total=[0-99]/total=${newTotal}/gI" sp.config
 
-. generate_yaml.sh
+bash generate_yaml.sh

@@ -1,26 +1,28 @@
-#!bin/bash
+#!/bin/bash
+
+echo "$(date -u) - generate_yaml.sh" >>"$(pwd)"/logs/scripts.log
 
 # Import config
 . sp.config
 
 # Delete old yaml file
 if [ -e docker-compose.yaml ]; then
-	rm docker-compose.yaml
+  rm docker-compose.yaml
 fi
 
 # Add Header to the yaml file
-cat > docker-compose.yaml <<-EOL
+cat >docker-compose.yaml <<-EOL
 version: '2.4'
 
 services:
 EOL
-index=-1
 
 ports=$(ls /dev/ttyUSB* /dev/ttyACM*)
 
 # Add instances
-for ((i = 0 ; i < $total ; i++)); do
-	cat >> docker-compose.yaml <<-EOL
+# shellcheck disable=SC2154
+for ((i = 0; i < total; i++)); do
+  cat >>docker-compose.yaml <<-EOL
   sp${i}:
     image: simplyprint/simplypi-docker
     restart: unless-stopped
@@ -35,15 +37,22 @@ for ((i = 0 ; i < $total ; i++)); do
       - ENABLE_MJPG_STREAMER=true
 
 	EOL
-	temp="${spDevices[$i]}"
-        device="${temp#*,}"
+  temp="${spDevices[$i]}"
+  device="${temp#*,}"
 
-	if [[ $ports =~ $device ]] && [[ -n $device ]]; then
-		cat >> docker-compose.yaml <<-EOL
+  if [[ $ports =~ $device ]] && [[ -n $device ]]; then
+    cat >>docker-compose.yaml <<-EOL
     devices:
       - $device:$device
 
 EOL
-	fi
+  fi
 done
-docker-compose up &>/dev/null &
+sleep 1
+date >>"$(pwd)"/logs/docker.log
+if ( (docker-compose up -d)); then
+  echo "docker-compose up -d - Successful - $(pwd)" >>"$(pwd)"/logs/log.txt
+else
+  echo "!!! docker-compose up -d - Failed - $(pwd) !!!" >>"$(pwd)"/logs/log.txt
+fi
+docker-compose logs | grep error >>"$(pwd)"/logs/docker.log

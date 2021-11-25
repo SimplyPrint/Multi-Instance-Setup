@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "$(date -u) - instance_setup.sh" >>"$(pwd)"/logs/scripts.log
+
 if [[ ! -e add_instance.sh ]]; then
   curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/add_instance.sh -o add_instance.sh
 fi
@@ -9,7 +11,7 @@ echo "declare -A spDevices" >>sp.config
 
 sep="# ---------------------------------- #"
 printf "\n\n"
-echo $sep
+echo "$sep"
 
 # Check if it's Pi, and if so; which model?
 pi_file="/proc/device-tree/model"
@@ -26,7 +28,9 @@ if [ "$pi_model" == "" ]; then
   rec_max="20"
   echo "We don't know what kind of device you're on, but we _think_ it isn't a Raspberry Pi."
   echo "So, we assume you're on a \"real\" Linux-based computer!"
-  printf "\nThe max suggested amount of instances to set up is; $rec_max in your case\n\n"
+  echo ""
+  echo "The max suggested amount of instances to set up is; $rec_max in your case"
+  echo ""
 else
   # Found device model
   rec_max="5"
@@ -67,7 +71,7 @@ else
 
   # Done looping models; tell user
   if [ "$unknown" = true ]; then
-    echo "Don't know nothing"
+    echo "Be aware that the $pi_model has not been tested"
   else
     if [ "$warn" = true ]; then
       # Bad; Zero or something
@@ -78,7 +82,8 @@ else
       printf "\n\n"
     else
       echo "\"$pi_model\" detected"
-      printf "We recommend setting up max; $rec_max instances\n\n"
+      echo "We recommend setting up max; $rec_max instances"
+      echo ""
 
       if [ $rec_max -gt "4" ]; then
         # More than 4 could be an issue, as the Pi's only have 4 USBs
@@ -91,22 +96,7 @@ fi
 
 read -n 1 -s -r -p "Press any key when all USB cables are removed ..."
 
-. add_instance.sh
-
-#Read current crontab
-crontab -l > mycron
-#Check if the cronjob already exist
-if [[ $mycron != *"* * * * * bash $(pwd)/check_devices.sh"* ]]; then
-  #echo new cronjob into crontab file
-  echo "@reboot bash $(pwd)/check_devices.sh" >> mycron
-  echo "* * * * * bash $(pwd)/check_devices.sh && sleep 10 && bash $(pwd)/check_devices.sh && sleep 10 && bash $(pwd)/check_devices.sh && sleep 10 && bash $(pwd)/check_devices.sh && sleep 10 && bash $(pwd)/check_devices.sh" >> mycron
-  #install new cron file
-  crontab mycron
-fi
-#Remove 
-rm mycron
-
-#. generate_yaml.sh
+bash add_instance.sh
 
 #printf "\n\nAwesome! Setting up $amount instances.\n\n"
 printf "\n\nSetting up Docker, this can take a while (up to 15 minutes), please wait (there will be no confirmation when it's done)\n"
