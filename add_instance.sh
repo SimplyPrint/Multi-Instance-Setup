@@ -47,7 +47,7 @@ for ((i = total ; i < newTotal ; i++)); do
   this_port=""
 
   for x in $return_ports; do
-    if [[ ! " $last_ports " =~ " $x " ]]; then
+    if [[ ! " $last_ports " =~ $x ]]; then
       # This (new) value doesn't exist in old array; is the new device
       this_port=$x
     fi
@@ -59,10 +59,10 @@ for ((i = total ; i < newTotal ; i++)); do
     exit
   else
     # Found port! Let's continue
-    printf "\n\nDevice $this_port detected!\n"
+    printf "\n\nDevice %s detected!\n" "$this_port"
     dev_id=$(bash get_device_id.sh this_port)
     echo "spDevices[$i]=$dev_id,$this_port" >>sp.config
-    printf "Added to config: spDevices[$i]=$dev_id,$this_port\n\n"
+    printf "Added to config: spDevices[$i]=%s\n\n" "$dev_id,$this_port"
   fi
 
 done

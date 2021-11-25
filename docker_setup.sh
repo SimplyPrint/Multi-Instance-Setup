@@ -19,6 +19,7 @@ yes | apt install python3-dev
 apt-get install -y python3 python3-pip
 pip3 install docker-compose
 
+curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/update.sh -o update.sh
 bash update.sh
 
 #Read current crontab
@@ -26,8 +27,11 @@ bash update.sh
   #Check if the cronjob already exist
   if [[ $myCron != *"@reboot cd $(pwd) && bash cron_check.sh"* ]]; then
     #echo new cronjob into crontab file
-    echo "@reboot cd $(pwd) && bash cron_check.sh" >>myCron
-    echo "* * * * * cd $(pwd) && bash cron_check.sh" >>myCron
+    {
+      echo "0 0 * * * cd $(pwd) && curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/update.sh -o update.sh"
+      echo "@reboot cd $(pwd) && bash cron_check.sh"
+      echo "* * * * * cd $(pwd) && bash cron_check.sh"
+    } >>myCron
     #install new cron file
     crontab myCron
   fi

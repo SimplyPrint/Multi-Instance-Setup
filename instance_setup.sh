@@ -77,7 +77,7 @@ else
       # Bad; Zero or something
       echo " !!!! WARNING !!!! "
       echo "We can see you're using a \"$pi_model\" which is NOT recommended and will most likely _NOT_ work for setting up multiple instances."
-      printf "\nWe won't stop you in proceeding, but strongly advise against it as there's very little chance it will work or function well, and could potentially damage your Rasbperry Pi..."
+      printf "\nWe won't stop you in proceeding, but strongly advise against it as there's very little chance it will work or function well, and could potentially damage your Raspberry Pi..."
       echo " !!!!         !!!! "
       printf "\n\n"
     else

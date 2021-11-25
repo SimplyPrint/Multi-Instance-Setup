@@ -10,8 +10,8 @@ function get_ports() {
 
   for word in $now_ports; do
     return_ports+=("$word")
-    total_ports=$(($total_ports + 1))
+    total_ports=$total_ports+1
   done
 
-  return_ports=${return_ports[@]}
+  return_ports=(return_ports[@])
 }

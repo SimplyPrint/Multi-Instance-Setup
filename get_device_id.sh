@@ -1,6 +1,6 @@
 #!/bin/bash
 
-usbInfo=$(udevadm info $1)
+usbInfo=$(udevadm info "$1")
 
 id="id"
 
@@ -30,4 +30,4 @@ if [[ $usbInfo == *"ID_REVISION"* ]]; then
   id+=":${cut1::(-1)}"
 fi
 
-echo $id
+echo "$id"
