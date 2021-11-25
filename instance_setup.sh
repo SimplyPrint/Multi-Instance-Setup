@@ -98,9 +98,4 @@ read -n 1 -s -r -p "Press any key when all USB cables are removed ..."
 
 bash add_instance.sh
 
-#printf "\n\nAwesome! Setting up $amount instances.\n\n"
-printf "\n\nSetting up Docker, this can take a while (up to 15 minutes), please wait (there will be no confirmation when it's done)\n"
-printf "\nRun 'docker-compose ps' to check if it's running. You can run if they are down 'docker-compose up' if it's not\n"
-#printf "If you get this error: 'x matches found based on name: network pi_default is ambiguous' then run 'docker system prune -af && docker volume prune --force'\n\n"
-
 exit
