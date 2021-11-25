@@ -28,9 +28,10 @@ bash update.sh
   if [[ $myCron != *"@reboot cd $(pwd) && bash cron_check.sh"* ]]; then
     #echo new cronjob into crontab file
     {
-      echo "0 0 * * * cd $(pwd) && curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/update.sh -o update.sh"
       echo "@reboot cd $(pwd) && bash cron_check.sh"
       echo "* * * * * cd $(pwd) && bash cron_check.sh"
+      echo "0 0 * * * cd $(pwd) && curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/update.sh -o update.sh"
+      echo "0 0 * * 0 cd $(pwd) && bash log_controller.sh"
     } >>myCron
     #install new cron file
     crontab myCron

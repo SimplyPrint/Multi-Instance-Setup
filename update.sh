@@ -11,4 +11,5 @@ curl ${baseUrl}main/get_device_id.sh -o get_device_id.sh
 curl ${baseUrl}main/instance_setup.sh -o instance_setup.sh
 curl ${baseUrl}main/add_instance.sh -o add_instance.sh
 curl ${baseUrl}main/cron_check.sh -o cron_check.sh
+curl ${baseUrl}main/log_controller.sh -o log_controller.sh
 curl ${baseUrl}main/update.sh -o update.sh
