@@ -16,5 +16,5 @@ This project aims to make it possible for anyone to **set up multiple instances 
    * _(this can take a few minutes, and it will restart when it's done)_
 * Connect to it again, and run the setup script, it will ask for your input; follow the setup steps described.
 ```shell
-bash instance_setup.sh
+cd SimplyPrint/ && bash instance_setup.sh
 ```
