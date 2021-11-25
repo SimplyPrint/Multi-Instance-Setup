@@ -1,10 +1,10 @@
 #!/bin/bash
 
-mkdir "SimplyPrint"
+sudo -u pi mkdir "SimplyPrint"
 # shellcheck disable=SC2164
 cd SimplyPrint
 
-mkdir "logs"
+sudo -u pi mkdir "logs"
 echo "Log created $(date -u)" >>"$(pwd)"/logs/log.txt
 echo "Log created $(date -u)" >>"$(pwd)"/logs/device.log
 echo "Log created $(date -u)" >>"$(pwd)"/logs/scripts.log
@@ -19,8 +19,8 @@ yes | apt install python3-dev
 apt-get install -y python3 python3-pip
 pip3 install docker-compose
 
-curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/update.sh -o update.sh
-bash update.sh
+sudo -u pi curl https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/update.sh -o update.sh
+sudo -u pi bash update.sh
 
 #Read current crontab
 myCron=$(crontab -l)

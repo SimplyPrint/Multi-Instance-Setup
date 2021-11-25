@@ -13,5 +13,7 @@ function get_ports() {
     total_ports=$total_ports+1
   done
 
-  return_ports=(return_ports[@])
+  # shellcheck disable=SC2124
+  # shellcheck disable=SC2178
+  return_ports=${return_ports[@]}
 }
