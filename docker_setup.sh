@@ -5,10 +5,10 @@ sudo -u pi mkdir "SimplyPrint"
 cd SimplyPrint
 
 sudo -u pi mkdir "logs"
-echo "Log created $(date -u)" >>"$(pwd)"/logs/log.txt
-echo "Log created $(date -u)" >>"$(pwd)"/logs/device.log
-echo "Log created $(date -u)" >>"$(pwd)"/logs/scripts.log
-echo "$(date -u) - docker_setup.sh" >>"$(pwd)"/logs/scripts.log
+sudo -u pi echo "Log created $(date -u)" >>"$(pwd)"/logs/log.txt
+sudo -u pi echo "Log created $(date -u)" >>"$(pwd)"/logs/device.log
+sudo -u pi echo "Log created $(date -u)" >>"$(pwd)"/logs/scripts.log
+sudo -u pi echo "$(date -u) - docker_setup.sh" >>"$(pwd)"/logs/scripts.log
 
 yes | apt-get update
 sudo -u pi curl -fsSL https://get.docker.com -o get-docker.sh
@@ -34,7 +34,7 @@ if [[ $myCron != *"@reboot cd $(pwd) && bash cron_check.sh"* ]]; then
     echo "0 0 * * 0 cd $(pwd) && bash log_controller.sh"
   } >>myCron
   #install new cron file
-  crontab myCron
+  sudo -u pi crontab myCron
 fi
 #Remove
 rm myCron
