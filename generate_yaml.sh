@@ -50,9 +50,9 @@ EOL
 done
 sleep 1
 date >>"$(pwd)"/logs/docker.log
-if ( (docker-compose up -d)); then
-  echo "docker-compose up -d - Successful - $(pwd)" >>"$(pwd)"/logs/log.txt
+if ( (/usr/local/bin/docker-compose up -d)); then
+  echo "/usr/local/bin/docker-compose up -d - Successful - $(pwd)" >>"$(pwd)"/logs/log.txt
 else
-  echo "!!! docker-compose up -d - Failed - $(pwd) !!!" >>"$(pwd)"/logs/log.txt
+  echo "!!! /usr/local/bin/docker-compose up -d - Failed - $(pwd) !!!" >>"$(pwd)"/logs/log.txt
 fi
 docker-compose logs | grep error >>"$(pwd)"/logs/docker.log
