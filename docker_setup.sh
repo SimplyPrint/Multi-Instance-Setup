@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo -u pi mkdir "SimplyPrint"
+sudo -u pi mkdir "simplyprint"
 # shellcheck disable=SC2164
 cd SimplyPrint
 
