@@ -10,6 +10,7 @@ function get_ports() {
 
   for word in $now_ports; do
     return_ports+=("$word")
+    # shellcheck disable=SC2004
     total_ports=$(($total_ports + 1))
   done
 

@@ -10,11 +10,11 @@ sudo -u pi touch logs/device.log
 sudo -u pi touch logs/scripts.log
 sudo -u pi touch logs/docker.log
 
-sudo -u pi echo "Log created $(date -u)" >>"$(pwd)"/logs/log.txt
-sudo -u pi echo "Log created $(date -u)" >>"$(pwd)"/logs/device.log
-sudo -u pi echo "Log created $(date -u)" >>"$(pwd)"/logs/scripts.log
-sudo -u pi echo "Log created $(date -u)" >>"$(pwd)"/logs/docker.log
-sudo -u pi echo "$(date -u) - docker_setup.sh" >>"$(pwd)"/logs/scripts.log
+echo "Log created $(date -u)" >>"$(pwd)"/logs/log.txt
+echo "Log created $(date -u)" >>"$(pwd)"/logs/device.log
+echo "Log created $(date -u)" >>"$(pwd)"/logs/scripts.log
+echo "Log created $(date -u)" >>"$(pwd)"/logs/docker.log
+echo "$(date -u) - docker_setup.sh" >>"$(pwd)"/logs/scripts.log
 
 yes | apt-get update
 sudo -u pi curl -fsSL https://get.docker.com -o get-docker.sh
