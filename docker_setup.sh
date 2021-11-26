@@ -2,7 +2,7 @@
 
 sudo -u pi mkdir "simplyprint"
 # shellcheck disable=SC2164
-cd SimplyPrint
+cd simplyprint
 
 sudo -u pi mkdir "logs"
 sudo -u pi touch logs/log.txt
