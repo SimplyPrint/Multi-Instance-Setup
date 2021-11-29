@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Setup wizard
 echo "$(date -u) - instance_setup.sh" >>"$(pwd)"/logs/scripts.log
 
 if [[ ! -e add_instance.sh ]]; then

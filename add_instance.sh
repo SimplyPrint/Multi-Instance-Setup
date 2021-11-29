@@ -4,7 +4,7 @@ echo "$(date -u) - add_instance.sh" >>"$(pwd)"/logs/scripts.log
 
 . sp.config
 
-sep="# ---------------------------------- #"
+sep="# ----------------------------------- #"
 printf "\n\nHow many SimplyPrint instances do you wish to set up? (write a number and press Enter)\n"
 
 read -r addTotal

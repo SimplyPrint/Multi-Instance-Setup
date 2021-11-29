@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Generic functions
 total_ports=0
 return_ports=()
 

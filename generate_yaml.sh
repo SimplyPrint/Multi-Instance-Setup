@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Generate the Docker YAML file
 echo "$(date -u) - generate_yaml.sh" >>"$(pwd)"/logs/scripts.log
 
 # Import config

@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 echo "$(date -u) - Running check_devices.sh" >>"$(pwd)"/logs/scripts.log
 echo "-- $(date -u) - Running check_devices.sh" >>"$(pwd)"/logs/log.txt
 

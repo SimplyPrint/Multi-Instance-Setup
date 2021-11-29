@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Check Docker YAML
 sudo -u pi mkdir "simplyprint"
 # shellcheck disable=SC2164
 cd simplyprint

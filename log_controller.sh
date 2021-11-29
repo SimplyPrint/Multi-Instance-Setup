@@ -1,5 +1,6 @@
 #! /bin/bash
 
+# Log controller
 logs/device.log >logs/device_old.log
 logs/scripts.log >logs/scripts_old.log
 logs/log.txt >logs/log_old.txt

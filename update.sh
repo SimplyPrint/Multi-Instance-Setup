@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Update script
 echo "$(date -u) - update.sh" >>"$(pwd)"/logs/scripts.log
 
 baseUrl="https://raw.githubusercontent.com/SimplyPrint/Multi-Instance-Setup/main/"

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Get USB devices (serial)
 usbInfo=$(udevadm info "$1")
 
 id="id"
