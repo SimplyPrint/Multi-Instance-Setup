@@ -13,4 +13,3 @@ curl ${baseUrl}instance_setup.sh -o instance_setup.sh
 curl ${baseUrl}add_instance.sh -o add_instance.sh
 curl ${baseUrl}cron_check.sh -o cron_check.sh
 curl ${baseUrl}log_controller.sh -o log_controller.sh
-curl ${baseUrl}update.sh -o update.sh
