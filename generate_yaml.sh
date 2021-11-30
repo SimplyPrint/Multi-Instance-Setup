@@ -29,7 +29,7 @@ for ((i = 0; i < total; i++)); do
     restart: unless-stopped
 
     ports:
-      - 8${i}:80
+      - 80${i}:80
 
     volumes:
       - ./sp${i}:/octoprint
