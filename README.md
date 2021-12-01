@@ -18,3 +18,4 @@ This project aims to make it possible for anyone to **set up multiple instances 
 ```shell
 cd simplyprint/ && bash instance_setup.sh
 ```
+* After it is set up the octoprint instances will be at the raspberry pi's IP with port 800, 801, 802.. and so on fx http://10.78.16.35:800
