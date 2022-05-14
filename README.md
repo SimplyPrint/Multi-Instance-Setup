@@ -1,5 +1,7 @@
 # SimplyPrint Multi Instance Setup
-**Heavily under development - this project is considered in Alpha-stage, still being tested but looks promising**.
+
+**No longer in development - better alternative without Docker exists;** use https://github.com/paukstelis/octoprint_deploy instead - also supports webcams!
+________
 
 This project aims to make it possible for anyone to **set up multiple instances of OctoPrint with SimplyPrint, on a single Raspberry Pi** _(or any Linux-based system)_.
 
